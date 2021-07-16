@@ -28,6 +28,8 @@ document.querySelector(".start").addEventListener("click", () => {
   wordIndex = 0;
 
   // UI updates
+  // Turn on the textbox
+  typedValueElement.removeAttribute("disabled");
   // Create an array of span elements so we can set a class
   const spanWords = words.map((word) => `<span>${word} </span>`);
   // Convert into string and set as innerHTML on wuote display
@@ -60,6 +62,8 @@ typedValueElement.addEventListener("input", () => {
     const elapsedTime = new Date().getTime() - startTime;
     const message = `CONGRATS! You finished in ${elapsedTime / 1000} seconds.`;
     messageElement.innerText = message;
+    // Turn off the textbox
+    typedValueElement.setAttribute("disabled", "disabled");
   } else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
     // end of word
     // clear the typedValueElement for the new word
