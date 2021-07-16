@@ -10,7 +10,7 @@ const quotes = [
 ];
 
 let words = [];
-let wordIndex = [];
+let wordIndex = 0;
 let startTime = Date.now();
 // page elements
 const quoteElement = document.querySelector(".quote");
