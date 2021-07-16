@@ -16,3 +16,34 @@ let startTime = Date.now();
 const quoteElement = document.querySelector(".quote");
 const messageElement = document.querySelector(".message");
 const typedValueElement = document.querySelector(".typed-value");
+
+document.querySelector(".start").addEventListener("click", () => {
+  // get a quote
+  const quoteIndex = Math.floor(Math.random() * quotes.length);
+  const quote = quotes[quoteIndex];
+
+  // put the quote into the array of quotes
+  words = quote.split(" ");
+  // reset the word index for tracking
+  wordIndex = 0;
+
+  // UI updates
+  // Create an array of span elements so we can set a class
+  const spanWords = words.map((word) => `<span>${word} </span>`);
+  // Convert into string and set as innerHTML on wuote display
+  quoteElement.innerHTML = spanWords.join("");
+  // Highlight the first word
+  quoteElement.childNodes[0].className = "highlight";
+  // Clear any prior messages
+  messageElement.innerText = "";
+
+  // Setup the textbox
+  // Clear the textbox
+  typedValueElement.value = "";
+  // set focus
+  typedValueElement.focus();
+  // set the event handler
+
+  // start the timer
+  startTime = new Date().getTime();
+});
