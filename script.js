@@ -18,6 +18,7 @@ const messageElement = document.querySelector(".message");
 const typedValueElement = document.querySelector(".typed-value");
 
 document.querySelector(".start").addEventListener("click", () => {
+  typedValueElement.addEventListener("input", inputLogic);
   // get a quote
   const quoteIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[quoteIndex];
@@ -50,13 +51,15 @@ document.querySelector(".start").addEventListener("click", () => {
   startTime = new Date().getTime();
 });
 
-typedValueElement.addEventListener("input", () => {
+const inputLogic = (e) => {
   // Get the current word
   const currentWord = words[wordIndex];
   // get the current value
   const typedValue = typedValueElement.value;
 
   if (typedValue === currentWord && wordIndex === words.length - 1) {
+    // Disable the input event listener
+    typedValueElement.removeEventListener("input", (_e) => {});
     // end of sentence
     // Display success
     const elapsedTime = new Date().getTime() - startTime;
@@ -84,4 +87,4 @@ typedValueElement.addEventListener("input", () => {
     // error state
     typedValueElement.className = "error";
   }
-});
+};
